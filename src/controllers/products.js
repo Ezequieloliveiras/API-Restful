@@ -10,6 +10,32 @@ async function get(req, res) {
     res.send(products)
 }
 
+// metodo post
+
+async function post(req, res) {
+    const {
+        name,
+        brand,
+        price,
+    } = req.body
+
+    
+
+    const product = new ProductsModel({
+        name,
+        brand,
+        price,
+    })
+
+    product.save()
+
+    res.send({
+        message: 'sucess'
+    })
+}
+
+
 module.exports = {
     get,
+    post,
 }
