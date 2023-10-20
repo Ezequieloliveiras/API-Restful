@@ -10,8 +10,6 @@ async function get(req, res) {
     res.send(products)
 }
 
-// metodo post
-
 async function post(req, res) {
     const {
         name,
@@ -19,7 +17,6 @@ async function post(req, res) {
         price,
     } = req.body
 
-    
 
     const product = new ProductsModel({
         name,
@@ -34,8 +31,32 @@ async function post(req, res) {
     })
 }
 
+async function put(req, res) {
+    const { id } = req.params
+
+
+    // se for obrigatorio retornar o produto usso esse metodo
+    const product = await ProductsModel.findOneAndUpdate({ _id: id }, req.body, { new: true })
+
+    res.send({
+        message: 'success',
+        product,
+    })
+
+
+    /*  
+    UMA FORMA DE FAZER - nao retorna item
+    const product = await ProductsModel.findById({ _id: id})
+         await product.updateOne(req.body)
+     
+         res.send({
+             message: 'sucess',
+             product,
+         })  */
+}
 
 module.exports = {
     get,
     post,
+    put,
 }
