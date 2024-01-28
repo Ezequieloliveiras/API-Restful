@@ -2,7 +2,7 @@ const mongoose = require('mongoose') //importando o mongoose
 
 
 function connect() {
-    mongoose.connect('mongodb+srv://ezequiel:zeze2015@cluster0.bnwihwx.mongodb.net/?retryWrites=true&w=majority');
+    mongoose.connect('mongodb+srv://password@cluster0.bnwihwx.mongodb.net/?retryWrites=true&w=majority');
 
     const db = mongoose.connection
 
