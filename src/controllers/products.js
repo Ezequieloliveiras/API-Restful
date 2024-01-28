@@ -35,7 +35,7 @@ async function put(req, res) {
     const { id } = req.params
 
 
-    // se for obrigatorio retornar o produto usso esse metodo
+    // se for obrigatorio retornar o produto us o esse metodo
     const product = await ProductsModel.findOneAndUpdate({ _id: id }, req.body, { new: true })
 
     res.send({
@@ -55,8 +55,22 @@ async function put(req, res) {
          })  */
 }
 
+async function remove(req, res) {
+    const { id } = req.params
+
+
+    const remove = await ProductsModel.deleteOne({ _id: id })
+
+    const message = remove.deletedCount > 0 ? 'success' : 'error'
+
+    res.send({
+        message,
+    })
+}
+
 module.exports = {
     get,
     post,
     put,
+    remove
 }
